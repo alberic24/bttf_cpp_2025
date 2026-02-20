@@ -155,6 +155,27 @@ include/
 src/
 └── [Mêmes dossiers que include/]
 ```
+### Schéma de l'architecture
+```
+┌─────────────┐
+│    Game     │ ← Boucle principale
+└──────┬──────┘
+       │
+       ├─→ MainMenu      (UI)
+       ├─→ SettingsMenu  (UI)
+       └─→ GameScene     (Core)
+            │
+            ├─→ Player        (Entity)
+            │    ├─→ Transform   (Component)
+            │    ├─→ Health      (Component)
+            │    ├─→ Collider    (Component)
+            │    └─→ IWeapon     (Weapon)
+            │
+            ├─→ Enemy         (Entity)
+            ├─→ Projectile    (Entity)
+            │
+            └─→ CollisionSystem (System)
+                 └─→ Vérifie collisions entre tout le monde
 
 ### Points importants pour l'évaluation
 
