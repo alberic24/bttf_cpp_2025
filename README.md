@@ -44,15 +44,15 @@ make
 ## 🎯 Contrôles du jeu
 
 ### Déplacement
-- **W / Z** : Avancer (haut)
-- **S** : Reculer (bas)
-- **A / Q** : Gauche
+- **H** : Avancer (haut)
+- **B** : Reculer (bas)
+- **G** : Gauche
 - **D** : Droite
 
 ### Combat
 - **Souris (mouvement)** : Visée (le joueur regarde vers le curseur)
-- **Clic gauche** : Tirer
-- **Clic droit / Molette** : Changer d'arme
+- **Clic gauche/espace** : Tirer
+- **Clic droit / Molette /E** : Changer d'arme
 - **R** : Recharger
 
 ### Interaction
