@@ -43,7 +43,7 @@ make
 
 ## 🎯 Contrôles du jeu
 
-### Déplacement
+### Déplacement 
 - **H** : Avancer (haut)
 - **B** : Reculer (bas)
 - **G** : Gauche
