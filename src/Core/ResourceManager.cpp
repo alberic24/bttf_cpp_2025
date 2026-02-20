@@ -11,7 +11,7 @@ ResourceManager::ResourceManager() {
     if (!defaultFont.loadFromFile("assets/OpenSans-Regular.ttf")) {
         if (!defaultFont.loadFromFile("../assets/OpenSans-Regular.ttf")) {
             if (!defaultFont.loadFromFile("src/assets/OpenSans-Regular.ttf")) {
-                std::cerr << "Warning: Could not load OpenSans font. Using default SFML font." << std::endl;
+                std::cerr << "Warning: Could not load OpenSans font." << std::endl;
             }
         }
     } else {
@@ -19,6 +19,7 @@ ResourceManager::ResourceManager() {
     }
     
     loadTextures();
+    loadSounds();
     
     if (menuMusic.openFromFile("assets/menu_music.ogg") || 
         menuMusic.openFromFile("../assets/menu_music.ogg") ||
@@ -56,14 +57,30 @@ void ResourceManager::loadTextures() {
     }
 }
 
-sf::Font& ResourceManager::getFont() {
-    return defaultFont;
+void ResourceManager::loadSounds() {
+    std::vector<std::string> basePaths = {"assets/", "../assets/", "src/assets/"};
+    
+    for (const auto& basePath : basePaths) {
+        if (pistolBuffer.loadFromFile(basePath + "pistol.ogg")) {
+            pistolSound.setBuffer(pistolBuffer);
+            pistolSound.setVolume(50.f);
+            std::cout << "✓ Loaded pistol sound!" << std::endl;
+            break;
+        }
+    }
+    
+    for (const auto& basePath : basePaths) {
+        if (fireballBuffer.loadFromFile(basePath + "fireball.ogg")) {
+            fireballSound.setBuffer(fireballBuffer);
+            fireballSound.setVolume(50.f);
+            std::cout << "✓ Loaded fireball sound!" << std::endl;
+            break;
+        }
+    }
 }
 
-sf::Texture& ResourceManager::getTexture(const std::string& name) {
-    return textures[name];
-}
-
-sf::Music& ResourceManager::getMenuMusic() {
-    return menuMusic;
-}
+sf::Font& ResourceManager::getFont() { return defaultFont; }
+sf::Texture& ResourceManager::getTexture(const std::string& name) { return textures[name]; }
+sf::Music& ResourceManager::getMenuMusic() { return menuMusic; }
+sf::Sound& ResourceManager::getPistolSound() { return pistolSound; }
+sf::Sound& ResourceManager::getFireballSound() { return fireballSound; }

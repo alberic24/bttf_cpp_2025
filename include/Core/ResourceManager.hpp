@@ -11,6 +11,8 @@ public:
     sf::Font& getFont();
     sf::Texture& getTexture(const std::string& name);
     sf::Music& getMenuMusic();
+    sf::Sound& getPistolSound();
+    sf::Sound& getFireballSound();
     
 private:
     ResourceManager();
@@ -19,8 +21,13 @@ private:
     ResourceManager& operator=(const ResourceManager&) = delete;
     
     void loadTextures();
+    void loadSounds();
     
     sf::Font defaultFont;
     std::map<std::string, sf::Texture> textures;
     sf::Music menuMusic;
+    sf::SoundBuffer pistolBuffer;
+    sf::SoundBuffer fireballBuffer;
+    sf::Sound pistolSound;
+    sf::Sound fireballSound;
 };

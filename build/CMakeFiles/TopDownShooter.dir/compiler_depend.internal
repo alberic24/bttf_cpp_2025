@@ -4636,11 +4636,29 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/FireballLauncher.cpp.o
  /home/alberic/bttf_cpp_2025/src/Weapons/FireballLauncher.cpp
  /home/alberic/bttf_cpp_2025/include/Components/Collider.hpp
  /home/alberic/bttf_cpp_2025/include/Components/Transform.hpp
+ /home/alberic/bttf_cpp_2025/include/Core/ResourceManager.hpp
  /home/alberic/bttf_cpp_2025/include/Entities/Projectile.hpp
  /home/alberic/bttf_cpp_2025/include/Utils/Config.hpp
  /home/alberic/bttf_cpp_2025/include/Utils/Math.hpp
  /home/alberic/bttf_cpp_2025/include/Weapons/FireballLauncher.hpp
  /home/alberic/bttf_cpp_2025/include/Weapons/IWeapon.hpp
+ /usr/include/SFML/Audio.hpp
+ /usr/include/SFML/Audio/AlResource.hpp
+ /usr/include/SFML/Audio/Export.hpp
+ /usr/include/SFML/Audio/InputSoundFile.hpp
+ /usr/include/SFML/Audio/Listener.hpp
+ /usr/include/SFML/Audio/Music.hpp
+ /usr/include/SFML/Audio/OutputSoundFile.hpp
+ /usr/include/SFML/Audio/Sound.hpp
+ /usr/include/SFML/Audio/SoundBuffer.hpp
+ /usr/include/SFML/Audio/SoundBufferRecorder.hpp
+ /usr/include/SFML/Audio/SoundFileFactory.hpp
+ /usr/include/SFML/Audio/SoundFileFactory.inl
+ /usr/include/SFML/Audio/SoundFileReader.hpp
+ /usr/include/SFML/Audio/SoundFileWriter.hpp
+ /usr/include/SFML/Audio/SoundRecorder.hpp
+ /usr/include/SFML/Audio/SoundSource.hpp
+ /usr/include/SFML/Audio/SoundStream.hpp
  /usr/include/SFML/Config.hpp
  /usr/include/SFML/Graphics.hpp
  /usr/include/SFML/Graphics/BlendMode.hpp
@@ -4855,7 +4873,9 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/FireballLauncher.cpp.o
  /usr/include/c++/14/bits/stl_iterator_base_types.h
  /usr/include/c++/14/bits/stl_map.h
  /usr/include/c++/14/bits/stl_multimap.h
+ /usr/include/c++/14/bits/stl_multiset.h
  /usr/include/c++/14/bits/stl_pair.h
+ /usr/include/c++/14/bits/stl_set.h
  /usr/include/c++/14/bits/stl_tempbuf.h
  /usr/include/c++/14/bits/stl_tree.h
  /usr/include/c++/14/bits/stl_uninitialized.h
@@ -4905,6 +4925,7 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/FireballLauncher.cpp.o
  /usr/include/c++/14/pstl/execution_defs.h
  /usr/include/c++/14/pstl/glue_algorithm_defs.h
  /usr/include/c++/14/pstl/pstl_config.h
+ /usr/include/c++/14/set
  /usr/include/c++/14/sstream
  /usr/include/c++/14/stdexcept
  /usr/include/c++/14/streambuf
@@ -4974,11 +4995,29 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/Pistol.cpp.o
  /home/alberic/bttf_cpp_2025/src/Weapons/Pistol.cpp
  /home/alberic/bttf_cpp_2025/include/Components/Collider.hpp
  /home/alberic/bttf_cpp_2025/include/Components/Transform.hpp
+ /home/alberic/bttf_cpp_2025/include/Core/ResourceManager.hpp
  /home/alberic/bttf_cpp_2025/include/Entities/Projectile.hpp
  /home/alberic/bttf_cpp_2025/include/Utils/Config.hpp
  /home/alberic/bttf_cpp_2025/include/Utils/Math.hpp
  /home/alberic/bttf_cpp_2025/include/Weapons/IWeapon.hpp
  /home/alberic/bttf_cpp_2025/include/Weapons/Pistol.hpp
+ /usr/include/SFML/Audio.hpp
+ /usr/include/SFML/Audio/AlResource.hpp
+ /usr/include/SFML/Audio/Export.hpp
+ /usr/include/SFML/Audio/InputSoundFile.hpp
+ /usr/include/SFML/Audio/Listener.hpp
+ /usr/include/SFML/Audio/Music.hpp
+ /usr/include/SFML/Audio/OutputSoundFile.hpp
+ /usr/include/SFML/Audio/Sound.hpp
+ /usr/include/SFML/Audio/SoundBuffer.hpp
+ /usr/include/SFML/Audio/SoundBufferRecorder.hpp
+ /usr/include/SFML/Audio/SoundFileFactory.hpp
+ /usr/include/SFML/Audio/SoundFileFactory.inl
+ /usr/include/SFML/Audio/SoundFileReader.hpp
+ /usr/include/SFML/Audio/SoundFileWriter.hpp
+ /usr/include/SFML/Audio/SoundRecorder.hpp
+ /usr/include/SFML/Audio/SoundSource.hpp
+ /usr/include/SFML/Audio/SoundStream.hpp
  /usr/include/SFML/Config.hpp
  /usr/include/SFML/Graphics.hpp
  /usr/include/SFML/Graphics/BlendMode.hpp
@@ -5193,7 +5232,9 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/Pistol.cpp.o
  /usr/include/c++/14/bits/stl_iterator_base_types.h
  /usr/include/c++/14/bits/stl_map.h
  /usr/include/c++/14/bits/stl_multimap.h
+ /usr/include/c++/14/bits/stl_multiset.h
  /usr/include/c++/14/bits/stl_pair.h
+ /usr/include/c++/14/bits/stl_set.h
  /usr/include/c++/14/bits/stl_tempbuf.h
  /usr/include/c++/14/bits/stl_tree.h
  /usr/include/c++/14/bits/stl_uninitialized.h
@@ -5243,6 +5284,7 @@ CMakeFiles/TopDownShooter.dir/src/Weapons/Pistol.cpp.o
  /usr/include/c++/14/pstl/execution_defs.h
  /usr/include/c++/14/pstl/glue_algorithm_defs.h
  /usr/include/c++/14/pstl/pstl_config.h
+ /usr/include/c++/14/set
  /usr/include/c++/14/sstream
  /usr/include/c++/14/stdexcept
  /usr/include/c++/14/streambuf

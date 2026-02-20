@@ -2,6 +2,7 @@
 #include "Entities/Projectile.hpp"
 #include "Utils/Math.hpp"
 #include "Utils/Config.hpp"
+#include "Core/ResourceManager.hpp"
 
 Pistol::Pistol() {
     currentAmmo = PISTOL_MAX_AMMO;
@@ -18,6 +19,8 @@ void Pistol::fire(float x, float y, float targetX, float targetY, std::vector<Pr
     
     currentAmmo--;
     timeSinceLastShot = 0.0f;
+    
+    ResourceManager::getInstance().getPistolSound().play();
     
     float angle = Math::angle(x, y, targetX, targetY);
     auto* proj = new Projectile(x, y, angle, Config::PROJECTILE_SPEED * 1.5f, PROJECTILE_DAMAGE, false);

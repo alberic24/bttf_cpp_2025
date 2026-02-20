@@ -2,6 +2,7 @@
 #include "Entities/Projectile.hpp"
 #include "Utils/Math.hpp"
 #include "Utils/Config.hpp"
+#include "Core/ResourceManager.hpp"
 
 FireballLauncher::FireballLauncher() {
     currentAmmo = FIREBALL_MAX_AMMO;
@@ -18,6 +19,8 @@ void FireballLauncher::fire(float x, float y, float targetX, float targetY, std:
     
     currentAmmo--;
     timeSinceLastShot = 0.0f;
+    
+    ResourceManager::getInstance().getFireballSound().play();
     
     float angle = Math::angle(x, y, targetX, targetY);
     auto* proj = new Projectile(x, y, angle, Config::PROJECTILE_SPEED * 0.6f, PROJECTILE_DAMAGE, true);
