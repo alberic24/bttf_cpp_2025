@@ -13,6 +13,7 @@ enum class GameState {
     MainMenu,
     Settings,
     Playing,
+    Victory,
     GameOver,
     Quit
 };
@@ -29,11 +30,13 @@ private:
     void update(float dt);
     void render();
     void drawIntro();
+    void drawVictory();  // <-- AJOUTÉ
     
     sf::RenderWindow window;
     sf::Clock clock;
     sf::Font& font;
     sf::Text gameOverText;
+    sf::Text victoryText;    // <-- AJOUTÉ
     
     // Intro
     int currentSlide = 0;

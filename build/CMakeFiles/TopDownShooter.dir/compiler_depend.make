@@ -565,6 +565,7 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: /home/alberic/bttf_cpp_2
   /home/alberic/bttf_cpp_2025/include/Components/Health.hpp \
   /home/alberic/bttf_cpp_2025/include/Components/Transform.hpp \
   /home/alberic/bttf_cpp_2025/include/Core/GameScene.hpp \
+  /home/alberic/bttf_cpp_2025/include/Core/ResourceManager.hpp \
   /home/alberic/bttf_cpp_2025/include/Core/Scene.hpp \
   /home/alberic/bttf_cpp_2025/include/Entities/Enemy.hpp \
   /home/alberic/bttf_cpp_2025/include/Entities/Explosion.hpp \
@@ -576,6 +577,23 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: /home/alberic/bttf_cpp_2
   /home/alberic/bttf_cpp_2025/include/Utils/Math.hpp \
   /home/alberic/bttf_cpp_2025/include/Weapons/IWeapon.hpp \
   /home/alberic/bttf_cpp_2025/include/Weapons/WeaponPickup.hpp \
+  /usr/include/SFML/Audio.hpp \
+  /usr/include/SFML/Audio/AlResource.hpp \
+  /usr/include/SFML/Audio/Export.hpp \
+  /usr/include/SFML/Audio/InputSoundFile.hpp \
+  /usr/include/SFML/Audio/Listener.hpp \
+  /usr/include/SFML/Audio/Music.hpp \
+  /usr/include/SFML/Audio/OutputSoundFile.hpp \
+  /usr/include/SFML/Audio/Sound.hpp \
+  /usr/include/SFML/Audio/SoundBuffer.hpp \
+  /usr/include/SFML/Audio/SoundBufferRecorder.hpp \
+  /usr/include/SFML/Audio/SoundFileFactory.hpp \
+  /usr/include/SFML/Audio/SoundFileFactory.inl \
+  /usr/include/SFML/Audio/SoundFileReader.hpp \
+  /usr/include/SFML/Audio/SoundFileWriter.hpp \
+  /usr/include/SFML/Audio/SoundRecorder.hpp \
+  /usr/include/SFML/Audio/SoundSource.hpp \
+  /usr/include/SFML/Audio/SoundStream.hpp \
   /usr/include/SFML/Config.hpp \
   /usr/include/SFML/Graphics.hpp \
   /usr/include/SFML/Graphics/BlendMode.hpp \
@@ -798,8 +816,10 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: /home/alberic/bttf_cpp_2
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
   /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_multimap.h \
+  /usr/include/c++/14/bits/stl_multiset.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/14/bits/stl_set.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
   /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
@@ -841,6 +861,7 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: /home/alberic/bttf_cpp_2
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/ios \
   /usr/include/c++/14/iosfwd \
+  /usr/include/c++/14/iostream \
   /usr/include/c++/14/istream \
   /usr/include/c++/14/iterator \
   /usr/include/c++/14/limits \
@@ -853,6 +874,7 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: /home/alberic/bttf_cpp_2
   /usr/include/c++/14/pstl/glue_algorithm_defs.h \
   /usr/include/c++/14/pstl/glue_memory_defs.h \
   /usr/include/c++/14/pstl/pstl_config.h \
+  /usr/include/c++/14/set \
   /usr/include/c++/14/sstream \
   /usr/include/c++/14/stdexcept \
   /usr/include/c++/14/streambuf \
@@ -1528,6 +1550,7 @@ CMakeFiles/TopDownShooter.dir/src/Entities/Enemy.cpp.o: /home/alberic/bttf_cpp_2
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/ios \
   /usr/include/c++/14/iosfwd \
+  /usr/include/c++/14/iostream \
   /usr/include/c++/14/istream \
   /usr/include/c++/14/iterator \
   /usr/include/c++/14/limits \
@@ -5997,9 +6020,9 @@ CMakeFiles/TopDownShooter.dir/src/main.cpp.o: /home/alberic/bttf_cpp_2025/src/ma
 
 /home/alberic/bttf_cpp_2025/src/Entities/Player.cpp:
 
-/usr/include/c++/14/iostream:
-
 /home/alberic/bttf_cpp_2025/src/Core/ResourceManager.cpp:
+
+/usr/include/c++/14/iostream:
 
 /usr/include/wchar.h:
 

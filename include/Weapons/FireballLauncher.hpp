@@ -19,5 +19,5 @@ private:
     static constexpr int FIREBALL_MAX_AMMO = 900;
     static constexpr float FIREBALL_FIRE_RATE = 1.0f;
     static constexpr float FIREBALL_RELOAD_TIME = 2.5f;
-    static constexpr float PROJECTILE_DAMAGE = 35.0f;
+   static constexpr float PROJECTILE_DAMAGE = 999.0f;
 };

@@ -18,6 +18,9 @@ public:
     void update(float dt) override;
     void draw(sf::RenderWindow& window) override;
     bool isPlayerAlive() const;
+    bool isBossDefeated() const { return bossDefeated; }  // <-- AJOUTÉ
+    int getKillCount() const { return enemyKillCount; }    // <-- AJOUTÉ
+    int score = 0;
     
 private:
     sf::Font& font;
@@ -34,7 +37,9 @@ private:
     float enemySpawnInterval;
     float pickupSpawnTimer;
     int enemiesSpawned;
+    int enemyKillCount;          // <-- AJOUTÉ : Compteur de kills
     bool bossSpawned;
+    bool bossDefeated;           // <-- AJOUTÉ : Boss vaincu ?
     WeaponType lastSpawnedWeapon;
     
     void spawnEnemy(bool boss = false);

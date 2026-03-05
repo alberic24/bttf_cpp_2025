@@ -238,6 +238,24 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: \
  /home/alberic/bttf_cpp_2025/include/Entities/Explosion.hpp \
  /home/alberic/bttf_cpp_2025/include/Weapons/WeaponPickup.hpp \
  /home/alberic/bttf_cpp_2025/include/UI/HUD.hpp \
+ /home/alberic/bttf_cpp_2025/include/Core/ResourceManager.hpp \
+ /usr/include/SFML/Audio.hpp /usr/include/SFML/Audio/InputSoundFile.hpp \
+ /usr/include/SFML/Audio/Export.hpp /usr/include/SFML/Audio/Listener.hpp \
+ /usr/include/SFML/Audio/Music.hpp \
+ /usr/include/SFML/Audio/SoundStream.hpp \
+ /usr/include/SFML/Audio/SoundSource.hpp \
+ /usr/include/SFML/Audio/AlResource.hpp \
+ /usr/include/SFML/Audio/OutputSoundFile.hpp \
+ /usr/include/SFML/Audio/Sound.hpp \
+ /usr/include/SFML/Audio/SoundBuffer.hpp /usr/include/c++/14/set \
+ /usr/include/c++/14/bits/stl_set.h \
+ /usr/include/c++/14/bits/stl_multiset.h \
+ /usr/include/SFML/Audio/SoundBufferRecorder.hpp \
+ /usr/include/SFML/Audio/SoundRecorder.hpp \
+ /usr/include/SFML/Audio/SoundFileFactory.hpp \
+ /usr/include/SFML/Audio/SoundFileFactory.inl \
+ /usr/include/SFML/Audio/SoundFileReader.hpp \
+ /usr/include/SFML/Audio/SoundFileWriter.hpp \
  /home/alberic/bttf_cpp_2025/include/Systems/CollisionSystem.hpp \
  /home/alberic/bttf_cpp_2025/include/Utils/Config.hpp \
  /usr/include/c++/14/fstream /usr/include/c++/14/istream \
@@ -265,4 +283,4 @@ CMakeFiles/TopDownShooter.dir/src/Core/GameScene.cpp.o: \
  /usr/include/c++/14/tr1/modified_bessel_func.tcc \
  /usr/include/c++/14/tr1/poly_hermite.tcc \
  /usr/include/c++/14/tr1/poly_laguerre.tcc \
- /usr/include/c++/14/tr1/riemann_zeta.tcc
+ /usr/include/c++/14/tr1/riemann_zeta.tcc /usr/include/c++/14/iostream

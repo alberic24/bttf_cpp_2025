@@ -5,7 +5,7 @@
 
 class Projectile {
 public:
-    Projectile(float x, float y, float angle, float speed, float damage, bool isAoE = false);
+    Projectile(float x, float y, float angle, float speed, float damage, bool isAoE = false, bool isEnemy = false);
     
     void update(float dt);
     void draw(sf::RenderWindow& window);
@@ -19,6 +19,7 @@ public:
     bool isAoE;        
     float aoeRadius;
     bool fromPlayer = false;
+    bool isEnemy;
     
 private:
     sf::Sprite sprite;

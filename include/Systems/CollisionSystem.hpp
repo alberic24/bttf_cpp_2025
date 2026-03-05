@@ -21,4 +21,7 @@ private:
     static void checkPlayerProjectiles(Player* player, std::vector<Projectile*>& projectiles);
     static void checkEnemyProjectiles(std::vector<Enemy*>& enemies, std::vector<Projectile*>& projectiles, std::vector<Explosion*>& explosions);
     static void checkPlayerPickups(Player* player, std::vector<WeaponPickup*>& pickups);
+    static void checkPlayerEnemies(Player* player, std::vector<Enemy*>& enemies);
+    
+    static float contactDamageTimer;
 };

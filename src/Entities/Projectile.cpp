@@ -4,9 +4,9 @@
 #include <cmath>
 #include "Utils/Math.hpp"
 
-Projectile::Projectile(float x, float y, float angle, float speed, float damage, bool isAoE)
+Projectile::Projectile(float x, float y, float angle, float speed, float damage, bool isAoE, bool isEnemy)
     : transform(x, y, angle), collider(Config::PROJECTILE_RADIUS, ColliderType::Projectile),
-      damage(damage), active(true), isAoE(isAoE), aoeRadius(80.0f) {
+      damage(damage), active(true), isAoE(isAoE), isEnemy(isEnemy), aoeRadius(80.0f) {
     
     velocityX = std::cos(angle) * speed;
     velocityY = std::sin(angle) * speed;
@@ -23,6 +23,11 @@ Projectile::Projectile(float x, float y, float angle, float speed, float damage,
     
     sprite.setPosition(x, y);
     sprite.setRotation(Math::radToDeg(angle));
+    
+    // Colorier les projectiles ennemis en ROUGE
+    if (isEnemy) {
+        sprite.setColor(sf::Color::Red);
+    }
     
     if (isAoE) {
         collider.radius = 8.0f;

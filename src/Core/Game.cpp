@@ -31,6 +31,15 @@ Game::Game()
     gameOverText.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     gameOverText.setPosition(Config::WINDOW_WIDTH / 2.f, Config::WINDOW_HEIGHT / 2.f);
     
+    // Victory text
+    victoryText.setFont(font);
+    victoryText.setString("VICTOIRE !\n\nVous avez vaincu le boss final !\n\nAppuyez sur ENTREE pour rejouer\nESCAPE pour revenir au menu");
+    victoryText.setCharacterSize(48);
+    victoryText.setFillColor(sf::Color::Yellow);
+    sf::FloatRect victoryBounds = victoryText.getLocalBounds();
+    victoryText.setOrigin(victoryBounds.width / 2.f, victoryBounds.height / 2.f);
+    victoryText.setPosition(Config::WINDOW_WIDTH / 2.f, Config::WINDOW_HEIGHT / 2.f);
+    
     // Slides intro
     slides = {
         "2157.\nLa Terre n'est plus ce qu'elle etait.",
@@ -108,7 +117,7 @@ void Game::handleEvents() {
                 gameScene.reset();
             } else if (state == GameState::Settings) {
                 state = GameState::MainMenu;
-            } else if (state == GameState::GameOver) {
+            } else if (state == GameState::GameOver || state == GameState::Victory) {
                 state = GameState::MainMenu;
                 gameScene.reset();
             }
@@ -119,7 +128,6 @@ void Game::handleEvents() {
 void Game::update(float dt) {
     switch (state) {
         case GameState::Intro: {
-            // Fade in du texte
             if (fadingIn) {
                 textAlpha += dt * 120.f;
                 if (textAlpha >= 255.f) {
@@ -162,8 +170,10 @@ void Game::update(float dt) {
             if (gameScene) {
                 gameScene->handleInput(window);
                 gameScene->update(dt);
-                
-                if (!gameScene->isPlayerAlive()) {
+                if (gameScene->isBossDefeated()) {
+                    state = GameState::Victory;
+                }
+                else if (!gameScene->isPlayerAlive()) {
                     state = GameState::GameOver;
                     gameScene.reset();
                 }
@@ -171,10 +181,18 @@ void Game::update(float dt) {
             break;
         }
         
+        case GameState::Victory: {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) ||
+                sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                state = GameState::Playing;
+                gameScene = std::make_unique<GameScene>(font, window);
+            }
+            break;
+        }
+        
         case GameState::GameOver: {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) ||
-                sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ||
-                sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                 state = GameState::Playing;
                 gameScene = std::make_unique<GameScene>(font, window);
             }
@@ -208,6 +226,10 @@ void Game::render() {
             }
             break;
             
+        case GameState::Victory:
+            drawVictory();
+            break;
+            
         case GameState::GameOver:
             window.draw(gameOverText);
             break;
@@ -236,4 +258,24 @@ void Game::drawIntro() {
     window.draw(introBackground);
     window.draw(slideText);
     window.draw(skipText);
+}
+
+void Game::drawVictory() {
+    if (gameScene) {
+        gameScene->draw(window);
+    }
+    
+    // Overlay sombre
+    sf::RectangleShape overlay(sf::Vector2f(window.getSize().x, window.getSize().y));
+    overlay.setFillColor(sf::Color(0, 0, 0, 180));
+    window.draw(overlay);
+    
+    // Recentrer le texte
+    float W = (float)window.getSize().x;
+    float H = (float)window.getSize().y;
+    sf::FloatRect vb = victoryText.getLocalBounds();
+    victoryText.setOrigin(vb.width / 2.f, vb.height / 2.f);
+    victoryText.setPosition(W / 2.f, H / 2.f);
+    
+    window.draw(victoryText);
 }

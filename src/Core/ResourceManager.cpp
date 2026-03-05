@@ -26,7 +26,15 @@ ResourceManager::ResourceManager() {
         menuMusic.openFromFile("src/assets/menu_music.ogg")) {
         menuMusic.setLoop(true);
         menuMusic.setVolume(Config::settings.volume * 100);
-        std::cout << "✓ Menu music loaded successfully!" << std::endl;
+        std::cout << "✓ Menu music loaded!" << std::endl;
+    }
+    
+    if (gameplayMusic.openFromFile("assets/hot_dope-adventure-seeker-short-version-1-148550.mp3") || 
+        gameplayMusic.openFromFile("../assets/hot_dope-adventure-seeker-short-version-1-148550.mp3") ||
+        gameplayMusic.openFromFile("src/assets/hot_dope-adventure-seeker-short-version-1-148550.mp3")) {
+        gameplayMusic.setLoop(true);
+        gameplayMusic.setVolume(Config::settings.volume * 100);
+        std::cout << "✓ Gameplay music loaded!" << std::endl;
     }
 }
 
@@ -77,10 +85,21 @@ void ResourceManager::loadSounds() {
             break;
         }
     }
+    
+    for (const auto& basePath : basePaths) {
+        if (explosionBuffer.loadFromFile(basePath + "explosion.mp3")) {
+            explosionSound.setBuffer(explosionBuffer);
+            explosionSound.setVolume(60.f);
+            std::cout << "✓ Loaded explosion sound!" << std::endl;
+            break;
+        }
+    }
 }
 
 sf::Font& ResourceManager::getFont() { return defaultFont; }
 sf::Texture& ResourceManager::getTexture(const std::string& name) { return textures[name]; }
 sf::Music& ResourceManager::getMenuMusic() { return menuMusic; }
+sf::Music& ResourceManager::getGameplayMusic() { return gameplayMusic; }
 sf::Sound& ResourceManager::getPistolSound() { return pistolSound; }
 sf::Sound& ResourceManager::getFireballSound() { return fireballSound; }
+sf::Sound& ResourceManager::getExplosionSound() { return explosionSound; }

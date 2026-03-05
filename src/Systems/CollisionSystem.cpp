@@ -17,12 +17,13 @@ void CollisionSystem::checkCollisions(
     checkPlayerProjectiles(player, projectiles);
     checkEnemyProjectiles(enemies, projectiles, explosions);
     checkPlayerPickups(player, pickups);
+    checkPlayerEnemies(player, enemies);
 }
 
 void CollisionSystem::checkPlayerProjectiles(Player* player, std::vector<Projectile*>& projectiles) {
     for (auto* proj : projectiles) {
         if (!proj->active) continue;
-        if (proj->fromPlayer) continue;
+        if (!proj->isEnemy) continue;
         
         if (player->collider.checkCollision(proj->collider, player->transform.x, player->transform.y, 
                                             proj->transform.x, proj->transform.y)) {
@@ -35,6 +36,7 @@ void CollisionSystem::checkPlayerProjectiles(Player* player, std::vector<Project
 void CollisionSystem::checkEnemyProjectiles(std::vector<Enemy*>& enemies, std::vector<Projectile*>& projectiles, std::vector<Explosion*>& explosions) {
     for (auto* proj : projectiles) {
         if (!proj->active) continue;
+        if (proj->isEnemy) continue;
         
         for (auto* enemy : enemies) {
             if (!enemy->health.isAlive()) continue;
@@ -79,6 +81,26 @@ void CollisionSystem::checkPlayerPickups(Player* player, std::vector<WeaponPicku
                 player->pickupWeapon(pickup->weaponType);
                 pickup->pickedUp = true;
             }
+        }
+    }
+}
+
+float CollisionSystem::contactDamageTimer = 0.0f;
+
+void CollisionSystem::checkPlayerEnemies(Player* player, std::vector<Enemy*>& enemies) {
+    contactDamageTimer += 1.0f / 60.0f;
+    
+    for (auto* enemy : enemies) {
+        if (!enemy->health.isAlive()) continue;
+        if (enemy->isBoss) continue;
+        
+        float dist = Math::distance(player->transform.x, player->transform.y,
+                                   enemy->transform.x, enemy->transform.y);
+        
+        float minDist = player->collider.radius + enemy->collider.radius;
+        if (dist < minDist && contactDamageTimer >= 1.0f) {
+            player->health.damage(5.0f);
+            contactDamageTimer = 0.0f;
         }
     }
 }

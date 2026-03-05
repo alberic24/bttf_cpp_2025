@@ -1,14 +1,17 @@
 #include "Core/GameScene.hpp"
+#include "Core/ResourceManager.hpp"
 #include "Systems/CollisionSystem.hpp"
 #include "Utils/Config.hpp"
 #include <SFML/Window/Keyboard.hpp>
 #include "Utils/Math.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>  
 
 GameScene::GameScene(sf::Font& font, sf::RenderWindow& win) 
     : font(font), window(&win), enemySpawnTimer(0.0f), enemySpawnInterval(3.0f),
-      pickupSpawnTimer(0.0f), enemiesSpawned(0), bossSpawned(false),
+      pickupSpawnTimer(0.0f), enemiesSpawned(0), enemyKillCount(0), score(0),
+      bossSpawned(false), bossDefeated(false),
       lastSpawnedWeapon(WeaponType::FireballLauncher) {
     
     std::srand(static_cast<unsigned>(std::time(nullptr)));
@@ -17,11 +20,16 @@ GameScene::GameScene(sf::Font& font, sf::RenderWindow& win)
     hud = std::make_unique<HUD>(font);
     
     for (int i = 0; i < 3; i++) {
-        spawnEnemy();
+        spawnEnemy(false);
     }
+    
+    sf::Music& music = ResourceManager::getInstance().getGameplayMusic();
+    music.setVolume(Config::settings.volume * 100);
+    music.play();
 }
 
 GameScene::~GameScene() {
+    ResourceManager::getInstance().getGameplayMusic().stop();
     cleanup();
 }
 
@@ -44,6 +52,8 @@ void GameScene::handleInput(sf::RenderWindow& window) {
 }
 
 void GameScene::update(float dt) {
+    if (!isPlayerAlive()) return;
+    
     player->update(dt, projectiles, *window);
     
     for (auto* proj : projectiles) {
@@ -56,8 +66,10 @@ void GameScene::update(float dt) {
         }
     }
     
+    int aliveBefore = 0;
     for (auto* enemy : enemies) {
         if (enemy->health.isAlive()) {
+            aliveBefore++;
             enemy->update(dt, player->transform.x, player->transform.y, projectiles);
         }
     }
@@ -68,13 +80,27 @@ void GameScene::update(float dt) {
     
     CollisionSystem::checkCollisions(player.get(), enemies, projectiles, pickups, explosions);
     
-    enemySpawnTimer += dt;
-    if (enemySpawnTimer >= enemySpawnInterval) {
-        spawnEnemy();
-        enemySpawnTimer = 0.0f;
-        enemiesSpawned++;
+    int aliveAfter = 0;
+    for (auto* enemy : enemies) {
+        if (enemy->health.isAlive()) {
+            aliveAfter++;
+        } else if (enemy->isBoss && !bossDefeated) {
+            bossDefeated = true;
+        }
+    }
+    int newKills = aliveBefore - aliveAfter;
+    enemyKillCount += newKills;
+    score += newKills;
+    
+    if (!bossSpawned) {
+        enemySpawnTimer += dt;
+        if (enemySpawnTimer >= enemySpawnInterval) {
+            spawnEnemy(false);
+            enemySpawnTimer = 0.0f;
+            enemiesSpawned++;
+        }
         
-        if (enemiesSpawned >= 10 && !bossSpawned) {
+        if (enemyKillCount >= 30 && !bossSpawned) {
             spawnEnemy(true);
             bossSpawned = true;
         }
@@ -82,7 +108,7 @@ void GameScene::update(float dt) {
     
     if (pickups.empty()) {
         pickupSpawnTimer += dt;
-        if (pickupSpawnTimer >= 90.0f) {
+        if (pickupSpawnTimer >= 15.0f) {
             spawnWeaponPickup();
             pickupSpawnTimer = 0.0f;
         }
@@ -112,7 +138,7 @@ void GameScene::draw(sf::RenderWindow& window) {
         explosion->draw(window);
     }
     
-    hud->draw(window, player.get());
+    hud->draw(window, player.get(), score);
 }
 
 void GameScene::spawnEnemy(bool boss) {
@@ -128,7 +154,6 @@ void GameScene::spawnEnemy(bool boss) {
 }
 
 void GameScene::spawnWeaponPickup() {
-    // Ne pas spawner la même arme deux fois de suite
     WeaponType type;
     if (lastSpawnedWeapon == WeaponType::Pistol) {
         type = WeaponType::FireballLauncher;
@@ -155,8 +180,12 @@ void GameScene::cleanup() {
     
     enemies.erase(
         std::remove_if(enemies.begin(), enemies.end(),
-                      [](Enemy* e) {
-                          if (!e->health.isAlive()) { delete e; return true; }
+                      [this](Enemy* e) {
+                          if (!e->health.isAlive()) {
+                              ResourceManager::getInstance().getExplosionSound().play();
+                              delete e;
+                              return true;
+                          }
                           return false;
                       }),
         enemies.end()

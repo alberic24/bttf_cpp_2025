@@ -177,6 +177,47 @@ src/
             └─→ CollisionSystem (System)
                  └─→ Vérifie collisions entre tout le monde
 
+Top-Down Shooter (C++/SFML)
+│
+├── 🎮 BOUCLE DE JEU PRINCIPALE (Game.cpp)
+│   ├── handleEvents()  → Écoute clavier/souris
+│   ├── update(dt)      → Logique du jeu
+│   └── render()        → Affichage à l'écran
+│
+├── 🎬 SCÈNES (States du jeu)
+│   ├── Intro           → Slides d'introduction
+│   ├── MainMenu        → Menu principal
+│   ├── Settings        → Paramètres
+│   ├── Playing         → Gameplay (GameScene)
+│   ├── Victory         → Écran de victoire
+│   └── GameOver        → Écran de défaite
+│
+├── 🧩 COMPOSANTS (Components)
+│   ├── Transform       → Position (x, y) + rotation
+│   ├── Health          → Points de vie
+│   └── Collider        → Hitbox circulaire
+│
+├── 👾 ENTITÉS (Entities)
+│   ├── Player          → Personnage jouable
+│   ├── Enemy           → Ennemis (normaux + boss)
+│   ├── Projectile      → Balles/projectiles
+│   └── Explosion       → Effets d'explosion AoE
+│
+├── 🔫 ARMES (Weapons) - ABSTRACTION OOP
+│   ├── IWeapon         → Interface abstraite
+│   ├── Pistol          → Tir rapide précis
+│   └── FireballLauncher→ Tir lent avec AoE
+│
+├── ⚙️ SYSTÈMES (Systems)
+│   ├── CollisionSystem → Détection de collisions
+│   └── PhysicsSystem   → (Stub pour extensions)
+│
+└── 🎨 UI (Interface)
+    ├── MainMenu        → Menu avec boutons
+    ├── SettingsMenu    → Volume + Fullscreen
+    ├── HUD             → Vie, munitions, arme
+    └── Button          → Boutons cliquables
+
 ### Points importants pour l'évaluation
 
 #### ✅ Abstraction du système d'armes

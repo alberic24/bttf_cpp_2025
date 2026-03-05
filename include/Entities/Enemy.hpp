@@ -25,5 +25,6 @@ public:
 private:
     sf::Sprite sprite;
     sf::Texture* texture;
+    float rotationSpeed = 0.0f;
     void shootAtPlayer(float playerX, float playerY, std::vector<Projectile*>& projectiles);
 };

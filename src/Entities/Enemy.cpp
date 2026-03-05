@@ -4,14 +4,16 @@
 #include "Utils/Config.hpp"
 #include "Utils/Math.hpp"
 #include <cmath>
+#include <iostream>
 
 Enemy::Enemy(float x, float y, bool isBoss)
     : transform(x, y), 
       health(isBoss ? Config::ENEMY_HEALTH * Config::BOSS_HEALTH_MULTIPLIER : Config::ENEMY_HEALTH),
       collider(Config::ENEMY_RADIUS, ColliderType::Enemy),
       isBoss(isBoss),
-      shootCooldown(isBoss ? 1.0f : 2.0f),
-      shootTimer(0.0f) {
+      shootCooldown(1.0f),
+      shootTimer(0.0f),
+      rotationSpeed(isBoss ? 120.0f : 0.0f) {
     
     texture = &ResourceManager::getInstance().getTexture(isBoss ? "boss" : "enemy");
     sprite.setTexture(*texture);
@@ -27,6 +29,7 @@ Enemy::Enemy(float x, float y, bool isBoss)
     
     if (isBoss) {
         collider.radius = Config::ENEMY_RADIUS * 1.5f;
+        std::cout << "🔥 BOSS CREATED at (" << x << ", " << y << ")" << std::endl;
     }
 }
 
@@ -38,34 +41,29 @@ void Enemy::update(float dt, float playerX, float playerY, std::vector<Projectil
     transform.move(dx * Config::ENEMY_SPEED * dt, dy * Config::ENEMY_SPEED * dt);
     sprite.setPosition(transform.x, transform.y);
     
-    shootTimer += dt;
-    if (shootTimer >= shootCooldown) {
-        shootAtPlayer(playerX, playerY, projectiles);
-        shootTimer = 0.0f;
+    if (isBoss) {
+        sprite.rotate(rotationSpeed * dt);
+        
+        shootTimer += dt;
+        if (shootTimer >= shootCooldown) {
+            shootAtPlayer(playerX, playerY, projectiles);
+            shootTimer = 0.0f;
+        }
     }
 }
 
 void Enemy::shootAtPlayer(float playerX, float playerY, std::vector<Projectile*>& projectiles) {
     float angle = Math::angle(transform.x, transform.y, playerX, playerY);
     
-    if (isBoss) {
-        for (int i = -1; i <= 1; i++) {
-            float spreadAngle = angle + i * Math::degToRad(15.0f);
-            projectiles.push_back(new Projectile(
-                transform.x, transform.y, 
-                spreadAngle, 
-                Config::PROJECTILE_SPEED * 0.8f, 
-                15.0f, 
-                false
-            ));
-        }
-    } else {
+    for (int i = -1; i <= 1; i++) {
+        float spreadAngle = angle + i * Math::degToRad(15.0f);
         projectiles.push_back(new Projectile(
-            transform.x, transform.y, 
-            angle, 
-            Config::PROJECTILE_SPEED * 0.7f, 
-            10.0f, 
-            false
+            transform.x, transform.y,
+            spreadAngle,
+            Config::PROJECTILE_SPEED * 0.8f,
+            15.0f,
+            false,
+            true
         ));
     }
 }
@@ -73,7 +71,6 @@ void Enemy::shootAtPlayer(float playerX, float playerY, std::vector<Projectile*>
 void Enemy::draw(sf::RenderWindow& window) {
     window.draw(sprite);
     
-    // Barre de vie
     if (health.getPercentage() < 1.0f) {
         float barWidth = collider.radius * 2.0f;
         float barHeight = 5.0f;

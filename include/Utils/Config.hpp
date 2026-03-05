@@ -12,7 +12,7 @@ namespace Config {
     constexpr float PLAYER_MAX_HEALTH = 100.0f;
     constexpr float PLAYER_RADIUS = 20.0f;
     
-    constexpr float ENEMY_SPEED = 100.0f;
+    constexpr float ENEMY_SPEED = 60.0f;
     constexpr float ENEMY_HEALTH = 50.0f;
     constexpr float ENEMY_RADIUS = 25.0f;
     constexpr float BOSS_HEALTH_MULTIPLIER = 3.0f;
